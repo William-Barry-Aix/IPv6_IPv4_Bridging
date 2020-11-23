@@ -1,1 +1,6 @@
-*/.vagrant
+VM1/.vagrant/
+VM1-6/.vagrant/
+VM2/.vagrant/
+VM2-6/.vagrant/
+VM3/.vagrant/
+VM3-6/.vagrant/
