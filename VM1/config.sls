@@ -58,7 +58,6 @@ routes:
         ipaddr: 172.16.2.160/28
         gateway: 172.16.2.132
 
-
 net.ipv4.ip_forward:
   sysctl:
     - present

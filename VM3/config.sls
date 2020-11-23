@@ -52,7 +52,11 @@ routes:
       - name: LAN3-6
         ipaddr: fc00:1234:3::/64
         gateway: fc00:1234:4::36
-
+    - name: eth1
+    - routes:
+      - name: LAN1
+        ipaddr: 172.16.2.128/28
+        gateway: 172.16.2.162
 
 net.ipv4.ip_forward:
   sysctl:
