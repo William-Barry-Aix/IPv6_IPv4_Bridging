@@ -3,7 +3,10 @@ CCFLAGS = -w -Wall -g
 
 OBJ = iftun.o extremite.o
 
-all : test_iftun test_extremite_in test_extremite_out
+all: test_iftun test_extremite_in test_extremite_out tunnel64d
+
+tunnel64d: tunnel64d.c $(OBJ) 
+	$(CC) $(CCFLAGS) tunnel64d.c -o tunnel64d $(OBJ)
 
 test_iftun: test_iftun.c iftun.o
 	$(CC) $(CCFLAGS) test_iftun.c -o test_iftun iftun.o

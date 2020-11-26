@@ -7,7 +7,7 @@
 
 int main (int argc, char **argv){
 
-	if (argc != 2) {
+	if (argc != 3) {
 		printf("Usage Error \n");
 		exit(1);
 	}
@@ -28,7 +28,7 @@ int main (int argc, char **argv){
 	system(cmd);
 
 	/** Lancement de l'écoute du tunel et renvoi des packets au serveur **/
-	ext_in("172.16.2.131", "123", fdTun);
+	ext_in(argv[2], "123", fdTun);
 
 	return 0;
 }

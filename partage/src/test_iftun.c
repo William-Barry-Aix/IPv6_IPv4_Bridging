@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <sys/socket.h> 
+#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
 
 #include <unistd.h>
 #include <fcntl.h>
 #include "iftun.h"
-   
+
 
 void catchPackets(char *tun_name, int dest){
 	int tunfd;
@@ -19,10 +19,11 @@ void catchPackets(char *tun_name, int dest){
 
 	tunfd = tun_alloc(tun_name);
 
-	
+
 	system("chmod +x configure-tun.sh");
 
-	strcpy(command, "./configure-tun.sh");
+	strcpy(command, "./configure-tun.sh ");
+	strcat(command, tun_name);
 	system(command);
 	if(tunfd < 0){
 		perror("Allocating interface");
@@ -53,4 +54,3 @@ int main (int argc, char** argv){
 
 	return 0;
 }
-

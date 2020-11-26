@@ -76,17 +76,19 @@ int ext_out(char* port, int fd){
     char msg[MAXLIGNE+1]; /* tampons pour les communications */
 		char tampon[MAXLIGNE+1];
     do { /* Faire echo et logguer */
-		lu = recv(n,tampon,MAXLIGNE,0);
-		if (lu > 0 )
-		{
-			//tampon[lu] = '\0';
-          /* log */
-			
-			snprintf(msg,MAXLIGNE,"> %s",tampon);
-			write(1, tampon, lu);
-		}
-	}while ( 1 );
-}
+  		lu = recv(n,tampon,MAXLIGNE,0);
+  		if (lu > 0 )
+  		{
+  			//tampon[lu] = '\0';
+            /* log */
+
+  			snprintf(msg,MAXLIGNE,"> %s",tampon);
+  			write(fd, tampon, lu);
+  		}
+	   }while ( 1 );
+  }
+  close(n);
+  return 0;
 }
 
 /* Source client: code fourni pour le tp3 */
@@ -149,3 +151,18 @@ int ext_in(char* ipServ, char* port, int fd) {
 	return 0;
 }
 
+void asyncInOut(char *ipOut, char* portOut, char *portIn, int fdTun) {
+    int f = fork();
+
+    if(f < 0){
+	  perror("Fork\n");
+	  exit(1);
+	}
+	else if(f == 0){
+	  sleep(5);
+    ext_in(ipOut, portOut, fdTun);
+  }
+	else {
+    ext_out(portIn, fdTun);
+  }
+}
