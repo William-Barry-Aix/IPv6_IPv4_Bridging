@@ -4,3 +4,4 @@ VM2/.vagrant/
 VM2-6/.vagrant/
 VM3/.vagrant/
 VM3-6/.vagrant/
+*.o
