@@ -9,35 +9,30 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 ##### Vos Configurations
   config.vm.box = "m1reseaux"
-  # Ajout d'une interface réseau (privée)
+
+  # Ajout d'une interface rÃ©seau (privÃ©e)
   config.vm.network "private_network", ip:"0.0.0.0", auto_config: false, virtualbox__intnet: "LAN1"
   config.vm.network "private_network", ip:"0.0.0.0", auto_config: false, virtualbox__intnet: "LAN3-6"
-  ### Dossiers partagés
 
 ##### NE PAS MODIFIER CETTE PARTIE
   config.vm.hostname = File.basename(Dir.getwd)
 
-  ### Dossiers partagés
+  ### Dossiers partagÃ©s
   config.vm.synced_folder ".", "/vagrant", owner: "m1reseaux"
-  config.vm.synced_folder "../partage", "/mnt/partage", create: true, owner: "m1reseaux" 
+  config.vm.synced_folder "../partage", "/mnt/partage", create: true, owner: "m1reseaux"
 
-  # paramètres virtualbox
+  # paramÃ¨tres virtualbox
   config.vm.provider "virtualbox" do |vb|
     vb.linked_clone = true  # performance
-    # Commenter pour s'exécuter sans GUI
+    # Commenter pour s'exÃ©cuter sans GUI
     vb.gui = true
-    # Mémoire
+    # MÃ©moire
     vb.customize ["modifyvm", :id, "--memory", "1024"]
     vb.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
     vb.customize ["modifyvm", :id, "--vram", "16"]
 
     # Copier coller, pour virtualbox >= 6.1
-		# Prise en compte du drag and drop
-		vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
-		vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
-    # vb.customize 'post-boot', ['controlvm', :id, 'clipboard', 'mode', 'bidirectional']
-    
+    vb.customize 'post-boot', ['controlvm', :id, 'clipboard', 'mode', 'bidirectional']
   end
 
 end
-

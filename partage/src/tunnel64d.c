@@ -98,13 +98,16 @@ int main(int argc, char **argv){
       fprintf(stderr, "ERREUR ALLOCATION TUNNEL\n");
       return 1;
   }
-
+  char cmd2[256];
   char cmd[256];
-  sprintf(cmd, "./configure-tun.sh %s %s %s ", conf->nameTun, conf->inIp, conf->options);
-
+  sprintf(cmd, "./configure-tun.sh %s %s ", conf->nameTun, conf->inIp);
   printf("Configuration en cours\n");
   system("chmod +x configure-tun.sh");
   system(cmd);
+  sprintf(cmd2, "./configure-route.sh %s %s %s", conf->options, conf->inIp, conf->nameTun);
+  printf("Configuration route\n");
+  system("chmod +x configure-route.sh");
+  system(cmd2);
 
   asyncInOut(conf->outIp, conf->outPort, conf->inPort, fdTun);
 }

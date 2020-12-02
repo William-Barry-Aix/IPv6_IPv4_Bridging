@@ -6,7 +6,7 @@
 #include <string.h>
 #include <netdb.h>
 
-#define MAXLIGNE 80
+#define MAXLIGNE 1500
 
 /* Source serveur: code fourni pour le tp3 */
 int ext_out(char* port, int fd){
