@@ -1,4 +1,4 @@
-# Configuration eth1
+# Configuration eth1 et eth2
 # RAPPEL: eth0 est à vagrant, ne pas y toucher
 
 ## Désactivation de network-manager
@@ -34,23 +34,3 @@ net.ipv4.ip_forward:
   sysctl:
     - present
     - value: 1
-
-routes:
-  network.routes:
-    ## Bizare, mais marche !!! Le truc bug, c'est pas ma faute
-    ## Il semblerais que la première route ne s'ajoute jamais
-    - name: eth1
-    - routes:
-      - name: LAN3-6
-        ipv6addr: fc00:1234:3::/64
-        gateway: fc00:1234:1::131
-    - name: eth2
-    - routes:
-      - name: LAN4-6
-        ipv6addr: fc00:1234:4::/64
-        gateway: 172.16.2.163
-    - name: eth1
-    - routes:
-      - name: LAN3-6
-        ipv6addr: fc00:1234:3::/64
-        gateway: fc00:1234:1::131
